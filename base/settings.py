@@ -5,7 +5,7 @@ import os
 #region DEPLOYMENT SETTINGS
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.envirot.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = []
 #endregion DEPLOYMENT SETTINGS
@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,16 @@ USE_I18N = True
 USE_TZ = True
 #endregion LANGUAGE AND TIME
 
+STATICFILES_DIRS = [BASE_DIR/ 'static']
 
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+RECAPTCHA_KEY=os.environ.get('RC_KEY')
+RECAPTCHA_SECRET_KEY=os.environ.get('RC_SECRET_KEY')
+
+LOGIN_URL='users:sign-in'
+LOGIN_REDIRECT_URL="user:account"
+LOGOUT_REDIRECT_URL='users:sign-in'
+
+BASE_COUNTRY='PL'
